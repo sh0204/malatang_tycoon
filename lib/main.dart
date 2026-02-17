@@ -101,12 +101,22 @@ class MalatangTycoonGame extends FlameGame {
       ),
     );
 
-    // 중앙 조리대 내 마라탕 냄비 (임시)
+    // 중앙 조리대 내 마라탕 냄비 (임시) - 보글보글 효과 및 그라데이션 적용
+    final potSize = size.y * 0.4;
+    final potPosition = Vector2(size.x * 0.1, size.y * 0.3);
     add(
       RectangleComponent(
-        size: Vector2(size.y * 0.4, size.y * 0.4), // 대략적인 크기
-        position: Vector2(size.x * 0.1, size.y * 0.3), // 중앙 조리대 영역 내 왼쪽 중앙
-        paint: Paint()..color = const Color(0xFF808080), // 회색
+        size: Vector2(potSize, potSize),
+        position: potPosition,
+        paint: Paint()
+          ..shader = LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              const Color(0xFFFF9800), // Orange
+              const Color(0xFFF44336), // Red
+            ],
+          ).createShader(Rect.fromLTWH(0, 0, potSize, potSize)),
       ),
     );
 
