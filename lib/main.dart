@@ -18,12 +18,12 @@ class MalatangTycoonGame extends FlameGame {
       ),
     );
 
-    // 상단 손님 영역 (화면 상단 25%)
+    // 상단 손님 영역 (화면 상단 25%) - 베이지색 대화창
     add(
       RectangleComponent(
         size: Vector2(size.x, size.y * 0.25),
         position: Vector2(0, 0),
-        paint: Paint()..color = const Color(0xFFADD8E6), // 연한 파란색
+        paint: Paint()..color = const Color(0xFFF5DEB3), // 베이지색 (Wheat)
       ),
     );
 
@@ -48,23 +48,23 @@ class MalatangTycoonGame extends FlameGame {
       ),
     );
 
-    // 중앙 조리대 (화면 중앙 50%)
+    // 중앙 조리대 (화면 중앙 50%) - 돌 재질 느낌의 회색
     add(
       RectangleComponent(
         size: Vector2(size.x, size.y * 0.50),
         position: Vector2(0, size.y * 0.25),
-        paint: Paint()..color = const Color(0xFF90EE90), // 연한 녹색
+        paint: Paint()..color = const Color(0xFF808080), // 회색 (Gray)
       ),
     );
 
-    // 하단 재료 바 (화면 하단 25%) - 색상 변경 및 슬롯 추가
+    // 하단 재료 바 (화면 하단 25%) - 짙은 갈색 나무 선반
     final bottomBarHeight = size.y * 0.25;
     final bottomBarY = size.y * 0.75;
     add(
       RectangleComponent(
         size: Vector2(size.x, bottomBarHeight),
         position: Vector2(0, bottomBarY),
-        paint: Paint()..color = const Color(0xFF8B4513), // 나무 질감에 가까운 갈색
+        paint: Paint()..color = const Color(0xFF5C4033), // 짙은 갈색 (Dark Brown)
       ),
     );
 
@@ -101,22 +101,16 @@ class MalatangTycoonGame extends FlameGame {
       ),
     );
 
-    // 중앙 조리대 내 마라탕 냄비 (임시) - 보글보글 효과 및 그라데이션 적용
-    final potSize = size.y * 0.4;
-    final potPosition = Vector2(size.x * 0.1, size.y * 0.3);
+    // 중앙 조리대 내 마라탕 냄비 (임시) - 커다란 원형, 보글보글 끓는 오렌지색
+    final potRadius = (size.y * 0.4) / 2; // 이전 사각형의 한 변 길이의 절반을 반지름으로
+    final potCenterX = size.x * 0.1 + potRadius;
+    final potCenterY = size.y * 0.3 + potRadius;
     add(
-      RectangleComponent(
-        size: Vector2(potSize, potSize),
-        position: potPosition,
-        paint: Paint()
-          ..shader = LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              const Color(0xFFFF9800), // Orange
-              const Color(0xFFF44336), // Red
-            ],
-          ).createShader(Rect.fromLTWH(0, 0, potSize, potSize)),
+      CircleComponent(
+        radius: potRadius,
+        position: Vector2(potCenterX, potCenterY),
+        anchor: Anchor.center, // 중앙을 기준으로 위치 설정
+        paint: Paint()..color = const Color(0xFFFF9800), // 밝은 오렌지색
       ),
     );
 
